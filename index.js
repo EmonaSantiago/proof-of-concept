@@ -1,20 +1,22 @@
-var express = require('express');
-var app = express();
+// console.log('hello emona')
 
-// set the view engine to ejs
-app.set('view engine', 'ejs');
+const express = require('express');
+const { readFile } = require('fs');
 
-// use res.render to load up an ejs view file
+const app = express();
 
-// index page
-app.get('/', function(req, res) {
-  res.render('pages/index');
+app.get('/', (request, response) => {
+
+    readFile('./index.ejs', 'utf8', (err, html) => {
+
+        if (err){
+            response.status(500).send('sorry,out of order')
+        }
+
+        response.send(html);
+    })
+
+
 });
 
-// about page
-app.get('/about', function(req, res) {
-  res.render('pages/about');
-});
-
-app.listen(8080);
-console.log('Server is listening on port 8080');
+app.listen(process.env.PORT || 1212, () => console.log('App avaiable on http://localhost:1212'))
