@@ -4,6 +4,13 @@ const express = require("express");
 const { readFile } = require('fs');
 const app = express();
 
+app.use(express.static('public'))
+app.use(express.static(__dirname + '/public'));
+app.use("/views", express.static('./views/'));
+ 
+app.set('view engine', 'ejs')
+app.set('views', './views')
+
  app.get("/", (Request,Response) => {
 
     readFile("./index.ejs", "utf8", (err, html) => {
