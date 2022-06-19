@@ -9,10 +9,10 @@ const app = express();
     readFile("./index.ejs", "utf8", (err, html) => {
 
        if (err) {
-           response.status(500).send("Sorry, out of order")
+           Response.status(500).send("Sorry, out of order")
        }
 
-       response.send(html);
+       Response.send(html);
 
     })
 
