@@ -1,28 +1,16 @@
 // console.log("HEY EMONA")
 
 const express = require("express");
-const { readFile } = require('fs');
 const app = express();
 
-app.use(express.static('public'))
-app.use(express.static(__dirname + '/public'));
-app.use("/views", express.static('./views/'));
- 
-app.set('view engine', 'ejs')
-app.set('views', './views')
+app.use(express.static('public'));
 
- app.get("/", (Request,Response) => {
+app.set('view engome', 'ejs');
+app.set('views', 'public/views');
 
-    readFile("./index.ejs", "utf8", (err, html) => {
+ app.get("/", (req, res) => {
 
-       if (err) {
-           Response.status(500).send("Sorry, out of order")
-       }
-
-       Response.send(html);
-
-    })
-
+   res.render('index');
 
  });
 
